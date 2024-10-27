@@ -1,0 +1,35 @@
+html {height:100%;}
+html {display:table; width:100%;}
+body {display:table-cell; text-align:center; vertical-align:middle;  }
+        form {
+            padding: 40px;
+              margin-left:20% ;
+    border: 5px solid;
+                width: 50%;
+        }
+           input {
+            padding: 7px 12px;
+            width: 10%;
+
+           }
+           select {
+            padding: 7px 12px;
+            width: 10%;
+           }
+           
+            input[type=submit] {
+                    width: 20%;
+                  
+                    
+                     box-sizing: border-box;
+                     border: 2px solid;
+            }
+            td {
+                text-align: left;
+            }
+            div {
+                border-bottom: 2px solid black;
+                align-items: start;
+                padding: 10px;
+            }
+           

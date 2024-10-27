@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+
+
+
+
+<body>
+    <button id="jsonBTN">Json Test</button>
+        <div id="showData"></div>
+    <div id="showAllcont">
+                        
+        <button id="showBTN">Afficher Produit</button>
+        
+        <p id="showAllData"></p>
+
+
+        <select id="produitComboBox">
+            <option value="">Select a product</option> <!-- Default option -->
+        </select>
+    
+        <!-- Div to display selected product details -->
+        <div id="productDetails" style="display: none;">
+            <p><strong>Product Name:</strong> <span id="nom"></span></p>
+            <p><strong>Description:</strong> <span id="description"></span></p>
+            <p><strong>Price:</strong> <span id="prix"></span></p>
+            <p><strong>Date Created:</strong> <span id="date_creation"></span></p>
+        </div>
+    </div>
+
+
+    
+    <div id="showByIdcont">
+        <button id="showOneBTN">Afficher un Produit avec ID</button>
+        <label>id :</label>
+        <input id="inpID" type="text" name="id">
+        <p id="showOneData" style="display:block"></p>
+
+        <table id="produitTable">
+            <thead>
+                <tr>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added here dynamically -->
+            </tbody>
+        </table>
+
+
+    </div>
+
+     <div id="newPrdcont">
+        <button id="addBTN">Ajouter Produit</button>
+        <label>nom :</label>
+        <input id="newNom" type="text" name="nom" placeholder="nom">
+        <label>description :</label>
+        <input id="newDesc" type="text" name="description" placeholder="description">
+        <label>prix :</label>
+        <input id="newPrix" type="text" name="prix" placeholder="prix">
+        <label>date :</label>
+        <input id="newDate" type="datetime" name="date" placeholder="date">
+
+     </div>   
+     <div id="deleteCont">
+        <button id="delBTN">Suprimmer Produit</button>
+        <label>id :</label>
+        <input id="delID" type="text" name="id">
+        
+    </div>
+
+    <div id="updateCont">
+        <button id="putBTN">Modifier Produit</button>
+            
+        <label>id :</label>
+        
+        <input id="upId" type="text" name="nom" placeholder="id">
+        <label>nom :</label>
+        <input id="upNom" type="text" name="nom" placeholder="nom">
+        <label>description :</label>
+        <input id="upDesc" type="text" name="description" placeholder="description">
+        <label>prix :</label>
+        <input id="upPrix" type="text" name="prix" placeholder="prix">
+        <label>date :</label>
+        <input id="upDate" type="datetime" name="date" placeholder="date">
+    </div>
+
+            
+</body>
+
+</html>
+<script src="js\APIFetch.js"></script>
