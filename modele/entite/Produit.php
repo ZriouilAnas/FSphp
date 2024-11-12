@@ -1,5 +1,10 @@
 <?php
-include 'C:\xampp\htdocs\LabREST_03\modele\dao\Connexion.php';
+
+namespace Modele\Entite;
+
+use Modele\Dao\Connexion;
+
+use PDO;
 class Produit extends Connexion {
 // Attributs
 

@@ -1,0 +1,181 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+    "title": "Ma 1ère API",
+    "contact": {
+    "email": "anasZRIOUL01@gmail.com"
+    },
+    "version": "1.0.0"
+    },
+    "paths": {
+        "/LabREST_03/api/v1.0/produit/new": {
+            "post": {
+              "summary": "Création d'un produit",
+              "requestBody": {
+                "required": true,
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        
+                        "nom": {
+                          "type": "string",
+                          "example": "aaddwith id??creaet"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Add your name in thHAHAHAHAHAHAHHAe body in XDDDHAHAHALOL"
+                        },
+                        "prix": {
+                          "type": "string",
+                          "example": 100
+                        }
+                      },
+                      "required": [ "nom", "description", "prix"]
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "200": {
+                  "description": "Création d'un produit à partir des données envoyées"
+                },
+                "503": {
+                  "description": "Le service n'est pas disponible"
+                },
+                "default": {
+                  "description": "Une erreur non prévue"
+                }
+              }
+            }
+          
+    },"/LabREST_03/api/v1.0/produit/list": {
+    "get": {
+    "summary": "Affichage de tout les produits",
+    "responses": {
+    "200": {
+    "description": "afficher touts les produits qui ce trouve au basedonne"
+    },
+    "503": {
+    "description": "Le service n'est pas disponible"
+    },
+    "default": {
+    "description": "Une erreur non prévue"
+    }
+    }
+    }
+    },"/LabREST_03/api/v1.0/produit/listone/{id}": {
+        "get": {
+        "summary": "affichage d'un produit",
+        "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 1
+              },
+              "description": "ID du produit à chercher"
+            }
+          ],
+        "responses": {
+        "200": {
+        "description": "afficher un produit à partir de l'ID"
+        },
+        "503": {
+        "description": "Le service n'est pas disponible"
+        },
+        "default": {
+        "description": "Une erreur non prévue"
+        }
+        }
+        }
+        }, "/LabREST_03/api/v1.0/produit/update/{id}": {
+            "put": {
+              "summary": "Modifier un produit",
+              "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 1
+              },
+              "description": "ID du produit à chercher"
+            }
+          ],
+              "requestBody": {
+                "required": true,
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                       
+                        "nom": {
+                          "type": "string",
+                          "example": "aaddwith id??creaet"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Add your name in thHAHAHAHAHAHAHHAe body in XDDDHAHAHALOL"
+                        },
+                        "prix": {
+                          "type": "number",
+                          "example": 100
+                        }
+                      },
+                      "required": [ "nom", "description", "prix"]
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "200": {
+                  "description": "Modification d'un produit à partir des données envoyées"
+                },
+                "503": {
+                  "description": "Le service n'est pas disponible"
+                },
+                "default": {
+                  "description": "Une erreur non prévue"
+                }
+              }
+            }
+          
+    
+            },"/LabREST_03/api/v1.0/produit/delete/{id}": {
+                "delete": {
+                "summary": "supprition d'un produit",
+                "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 1
+              },
+              "description": "ID du produit à chercher"
+            }
+          ],
+                "responses": {
+                "200": {
+                "description": "supromer d'un produit à partir de l'ID"
+                },
+                "503": {
+                "description": "Le service n'est pas disponible"
+                },
+                "default": {
+                "description": "Une erreur non prévue"
+                }
+                }
+                }
+                }
+    
+    
+    
+    }}

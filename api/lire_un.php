@@ -1,5 +1,42 @@
 <?php
-require_once '..\modele\entite\Produit.php';
+
+use OpenApi\Annotations as OA;
+/**
+* @OA\Info(title="Mon API", version="1.0.0")
+*/
+/**
+* @OA\Get(
+* path="/LabREST_03/api/produit/listone",
+* summary="affichage d'un produit",
+* @OA\Response(
+* response=200,
+* description="affichage d'un produit à partir d'ID envoyées"
+* ),
+* @OA\Response(
+* response=503,
+* description="Le service n'est pas disponible"
+* ),
+* @OA\Response(
+* response="default",
+* description="Une erreur non prévue"
+* )
+* )
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+require_once '../autoloader.php';
+
+use Modele\Entite\Produit;
 
 // Accès depuis n'importe quel site ou appareil (*)
 header("Access-Control-Allow-Origin: *");
@@ -20,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         $id = $_GET['id'];
 
         // Initialize the Produit class
-        $produit = new Produit();
+        $produit = new Produit;
 
         // Find the product by ID
         $statement = $produit->findById($id);

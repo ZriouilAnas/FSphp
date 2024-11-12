@@ -1,5 +1,7 @@
 <?php
+namespace Modele\Dao;
 
+use PDO;
 class Connexion {
     private $id;
     protected $db;

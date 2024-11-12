@@ -59,7 +59,7 @@ putBTN.addEventListener("click" , updateProduit )
             })
             .then(data => {
                 console.log(data); // Log the data to the console
-                // You can update your HTML here with the product data
+              
                 //showAllData.innerText = JSON.stringify(data, null, 2);
                 showAllData.innerText = "Les produits ont ete afficher avec success "
                 const allData = JSON.stringify(data, null, 2);
@@ -231,28 +231,35 @@ function displayProduits(data) {
         
         function displayObjectAsTable(produit) {
             const tableBody = document.querySelector("#produitTable tbody");
-
+            
+            tableBody.innerHTML = '';
+        
             // Loop through the object keys and values
             for (const [key, value] of Object.entries(produit)) {
                 // Create a new row
                 const row = document.createElement("tr");
-
+        
                 // Create a cell for the key (property name)
                 const keyCell = document.createElement("td");
                 keyCell.textContent = key;
                 row.appendChild(keyCell);
-
+        
                 // Create a cell for the value
                 const valueCell = document.createElement("td");
                 valueCell.textContent = value;
                 row.appendChild(valueCell);
-
+        
                 // Append the row to the table body
                 tableBody.appendChild(row);
-               
             }
-            br = document.createElement("hr")
-            tableBody.appendChild(br);
+        
+            // Create a button to clear the table
+            const clearButton = document.createElement("button");
+            clearButton.innerText = "X Clear X";
+            clearButton.addEventListener('click', function() {tableBody.innerHTML = ''});
+                
+        
+            // Append the button to the parent element of the table (e.g., div or table)
+            tableBody.appendChild(clearButton);
         }
-        
-        
+                 
