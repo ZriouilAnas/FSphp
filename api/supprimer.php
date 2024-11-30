@@ -1,5 +1,7 @@
 <?php
+require_once '../autoloader.php';
 
+use Modele\Dao\ProduitDao;
 use OpenApi\Annotations as OA;
 /**
 * @OA\Info(title="Mon API", version="1.0.0")
@@ -25,11 +27,6 @@ use OpenApi\Annotations as OA;
 
 
 
-
-
-require_once '../autoloader.php';
-
-use Modele\Entite\Produit;
 //Accès depuis n'importe quel site ou appareil (*)
 header("Access-Control-Allow-Origin: *");
 //◇ Format des données envoyées = JSON
@@ -43,14 +40,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-ControlAllow-Headers,
 
 if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
 
-    $produit = new Produit();
+    $produitDao = new ProduitDao();
 
     
     if ( isset($_GET['id']) && !empty($_GET['id'])){
         $id = $_GET['id'];
         
         
-  $result = $produit->delete($id);
+  $result = $produitDao->delete($id);
         if ($result = 1) {
             http_response_code(200);
             echo json_encode(['message' => "Suppression effectuée"]);    

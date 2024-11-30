@@ -1,5 +1,8 @@
 <?php
+require_once '../autoloader.php';
 
+use Modele\Dao\ProduitDao;
+use Modele\entite\Produit;
 use OpenApi\Annotations as OA;
 /**
 * @OA\Info(title="Mon API", version="1.0.0")
@@ -23,16 +26,6 @@ use OpenApi\Annotations as OA;
 * )
 */
 
-
-
-
-
-
-
-
-require_once '../autoloader.php';
-
-use Modele\Entite\Produit;
 //Accès depuis n'importe quel site ou appareil (*)
 header("Access-Control-Allow-Origin: *");
 //◇ Format des données envoyées = JSON
@@ -46,6 +39,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-ControlAllow-Headers,
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
+    $produitDao = new ProduitDao();
     $produit = new Produit();
 
     $data = json_decode(file_get_contents("php://input"));
@@ -54,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 $produit->setDescription($data->description);
 $produit->setPrix($data->prix);
 $produit->setDate_creation(date('Y-m-d') );
-  $result = $produit->create();
+  $result = $produitDao->create($produit);
         if ($result = 1) {
             http_response_code(200);
             echo json_encode(['message' => "Creation effectuée"]);    

@@ -1,16 +1,18 @@
 <?php
+require_once '../autoloader.php';
 
+use modele\dao\ProduitDao;
 use OpenApi\Annotations as OA;
 /**
 * @OA\Info(title="Mon API", version="1.0.0")
 */
 /**
 * @OA\Get(
-* path="/LabREST_03/api/produit/listone",
-* summary="affichage d'un produit",
+* path="/LabREST_03/api/produitDao/listone",
+* summary="affichage d'un produitDao",
 * @OA\Response(
 * response=200,
-* description="affichage d'un produit à partir d'ID envoyées"
+* description="affichage d'un produitDao à partir d'ID envoyées"
 * ),
 * @OA\Response(
 * response=503,
@@ -24,19 +26,6 @@ use OpenApi\Annotations as OA;
 */
 
 
-
-
-
-
-
-
-
-
-
-
-require_once '../autoloader.php';
-
-use Modele\Entite\Produit;
 
 // Accès depuis n'importe quel site ou appareil (*)
 header("Access-Control-Allow-Origin: *");
@@ -57,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         $id = $_GET['id'];
 
         // Initialize the Produit class
-        $produit = new Produit;
+        $produitDao = new ProduitDao();
 
         // Find the product by ID
-        $statement = $produit->findById($id);
+        $statement = $produitDao->findById($id);
 
         if ($statement) {
             // Send response as JSON
@@ -68,12 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             echo json_encode($statement);
         } else {
             http_response_code(404);
-            echo json_encode(["message" => "Produit n’existe pas"]);
+            echo json_encode(["message" => "produitDao n’existe pas"]);
         }
     } else {
         // Send a 400 Bad Request response if the ID is missing or invalid
         http_response_code(400);
-        echo json_encode(['message' => "ID du produit manquant ou invalide"]);
+        echo json_encode(['message' => "ID du produitDao manquant ou invalide"]);
     }
 
 } else {

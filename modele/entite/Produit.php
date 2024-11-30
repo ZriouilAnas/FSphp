@@ -5,9 +5,9 @@ namespace Modele\Entite;
 use Modele\Dao\Connexion;
 
 use PDO;
-class Produit extends Connexion {
+class Produit  {
 // Attributs
-
+private $id;
 private $nom;
 private $description;
 private $prix;
@@ -17,50 +17,6 @@ private $date_creation;
 
 
 
-public function create(){
-    $sqlState = $this->database()->prepare("INSERT INTO t_produit VALUES(NULL,?,?,?,?) ");
-    return $sqlState->execute([
-        $this->nom,
-        $this->description,
-        $this->prix,
-        $this->date_creation,
-    ]);
-    
-}
-public function findAll(){
-    
-     return $this->database()->query('SELECT * FROM `t_produit`')->fetchAll(PDO::FETCH_ASSOC);
-}
-public function findById($id){
-    $sqlState = $this->database()->prepare('SELECT * FROM `t_produit` WHERE id=?');
-     $sqlState->execute([$id]); 
-     $sqlState->setFetchMode(PDO::FETCH_ASSOC) ;
-     return $sqlState->fetch();
-}
-public function delete($id){
-    $sqlState = $this->database()->prepare('DELETE FROM t_produit WHERE id=?');
-     $sqlState->execute([$id]);
-}
-public function update($id){
-    
-
-    
-    $sql = 'nom = ? ,';
-    $sql = $sql.'description = ? ,';
-    $sql = $sql.'prix = ? ,';
-    $sql = $sql.'date_creation = ?';
-    $sql = $sql.'WHERE id = ?';
-
-    $sqlState = $this->database()->prepare("UPDATE t_produit SET $sql");
-                                       
-    return $sqlState->execute([
-        $this->nom,
-        $this->description,
-        $this->prix,
-        $this->date_creation,
-        $id
-    ]);
-}
 
 
 

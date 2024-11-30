@@ -1,5 +1,6 @@
 <?php
-
+require_once '../Autoloader.php';
+use modele\dao\ProduitDao;
 use OpenApi\Annotations as OA;
 
 /**
@@ -7,11 +8,11 @@ use OpenApi\Annotations as OA;
 */
 /**
 * @OA\Get(
-* path="/LabREST_03/api/produit/list",
-* summary="Affichage de tout produits",
+* path="/LabREST_03/api/produitDao/list",
+* summary="Affichage de tout produitDaos",
 * @OA\Response(
 * response=200,
-* description="affichage tout les produits"
+* description="affichage tout les produitDaos"
 * ),
 * @OA\Response(
 * response=503,
@@ -23,12 +24,6 @@ use OpenApi\Annotations as OA;
 * )
 * )
 */
-
-
-require_once '../autoloader.php';
-
-use Modele\Entite\Produit;
-
 
 //Accès depuis n'importe quel site ou appareil (*)
 header("Access-Control-Allow-Origin: *");
@@ -42,10 +37,10 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-ControlAllow-Headers, Authorization, X-Requested-With");
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $produit = new Produit();
+    $produitDao = new ProduitDao();
 
     // Récupération des données
-    $statement = $produit->findAll();
+    $statement = $produitDao->findAll();
     
     if ($statement) {
         $data = [];

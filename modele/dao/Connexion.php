@@ -2,32 +2,27 @@
 namespace Modele\Dao;
 
 use PDO;
+use PDOException;
+
 class Connexion {
-    private $id;
-    protected $db;
-    /**
- * Get the value of id
- */ 
-public function getId()
-{
-return $this->id;
-}
-
- 
-public function setId($id)
-{
-$this->id = $id;
-
-return $this;
-}
-    public  function database(){
-    if (is_null($this->db)) {
-        $this->db = new PDO(dsn: 'mysql:host=localhost;dbname=db_labrest',username: 'root',password:'');
+    private $host = 'localhost';
+    private $dbname = 'db_labrest';
+    private $username = 'root';
+    private $password = '';
+    private  $connexion;
+    
+public function getConnexion():mixed{
+    try {
+    $this->connexion = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname,
+    $this->username,
+    $this->password);
+    }catch(PDOException $exception) {
+    throw $exception;
     }
-    return $this->db;
+    return $this->connexion;
+}
 
-   
-}}
+}
 
 
 

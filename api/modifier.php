@@ -1,5 +1,7 @@
 <?php
+require_once '../autoloader.php';
 
+use Modele\Dao\ProduitDao;
 use OpenApi\Annotations as OA;
 /**
 * @OA\Info(title="Mon API", version="1.0.0")
@@ -23,18 +25,6 @@ use OpenApi\Annotations as OA;
 * )
 */
 
-
-
-
-
-
-
-
-
-require_once '../autoloader.php';
-
-use Modele\Entite\Produit;
-
 // Allow access from any site or device (*)
 header("Access-Control-Allow-Origin: *");
 // Data format sent = JSON
@@ -52,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === "PUT") {
         $id = $_GET['id']; // Retrieve the product ID from the URL
 
         // Instantiate the Product class
-        $produit = new Produit();
+        $produitDao = new ProduitDao();
 
         // Get the input data from the request body
         $data = json_decode(file_get_contents("php://input"));
