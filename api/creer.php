@@ -49,7 +49,7 @@ $produit->setDescription($data->description);
 $produit->setPrix($data->prix);
 $produit->setDate_creation(date('Y-m-d') );
   $result = $produitDao->create($produit);
-        if ($result = 1) {
+        if ($result == 1) {
             http_response_code(200);
             echo json_encode(['message' => "Creation effectuée"]);    
         } else {

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
         
         
   $result = $produitDao->delete($id);
-        if ($result = 1) {
+        if ($result == 1) {
             http_response_code(200);
             echo json_encode(['message' => "Suppression effectuée"]);    
         } else {

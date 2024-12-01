@@ -11,17 +11,27 @@ class ProduitDao  {
         $this->connexion = $connexion->getConnexion();    
     }
     
-public function create($produit){
-    $sql = "INSERT INTO t_produit SET nom:nom,description:description,prix:prix,date_creation:date_creation";
+public function create($produit) {
+    $sql = "INSERT INTO t_produit (nom, description, prix, date_creation) 
+            VALUES (:nom, :description, :prix, :date_creation)";
     
     $sqlState = $this->connexion->prepare($sql);
-    $sqlState->bindParam(":nom", $produit->getNom());
-    $sqlState->bindParam(":description", $produit->getDescription());
-    $sqlState->bindParam(":prix", $produit->getPrix());
-    $sqlState->bindParam(":date_creation", $produit->getDate_creation());
-     return $sqlState->execute();
+
     
+    $nom = $produit->getNom();
+    $description = $produit->getDescription();
+    $prix = $produit->getPrix();
+    $date_creation = $produit->getDate_creation();
+
+    
+    $sqlState->bindParam(":nom", $nom);
+    $sqlState->bindParam(":description", $description);
+    $sqlState->bindParam(":prix", $prix);
+    $sqlState->bindParam(":date_creation", $date_creation);
+    
+    return $sqlState->execute();
 }
+
 public function findAll(){
     
      return $this->connexion->query('SELECT * FROM `t_produit`')->fetchAll(PDO::FETCH_ASSOC);
@@ -34,20 +44,30 @@ public function findById($id){
 }
 public function delete($id){
     $sqlState = $this->connexion->prepare('DELETE FROM t_produit WHERE id=?');
-     $sqlState->execute([$id]);
+     return $sqlState->execute([$id]);
 }
 public function update($produit){
-    $sql = 'nom = ? ,';
-    $sql = $sql.'description = ? ,';
-    $sql = $sql.'prix = ? ,';
-    $sql = $sql.'date_creation = ?';
-    $sql = $sql.'WHERE id = ?';
-    $sqlState = $this->connexion->prepare("UPDATE t_produit SET $sql");        
-    return $sqlState->execute([
-        $produit->nom,
-        $produit->description,
-        $produit->prix,
-        $produit->date_creation
-    ]);
+     $sql = "UPDATE t_produit 
+            SET nom = :nom, 
+                description = :description, 
+                prix = :prix, 
+                date_creation = :date_creation
+            WHERE id = :id";
+
+    $sqlState = $this->connexion->prepare($sql);
+
+    $id = $produit->getId();
+    $nom = $produit->getNom();
+    $description = $produit->getDescription();
+    $prix = $produit->getPrix();
+    $date_creation = $produit->getDate_creation();
+
+    $sqlState->bindParam(":id", $id);
+    $sqlState->bindParam(":nom", $nom);
+    $sqlState->bindParam(":description", $description);
+    $sqlState->bindParam(":prix", $prix);
+    $sqlState->bindParam(":date_creation", $date_creation);
+    
+    return $sqlState->execute();
 }
 }

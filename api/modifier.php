@@ -2,6 +2,7 @@
 require_once '../autoloader.php';
 
 use Modele\Dao\ProduitDao;
+use Modele\entite\Produit;
 use OpenApi\Annotations as OA;
 /**
 * @OA\Info(title="Mon API", version="1.0.0")
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === "PUT") {
 
         // Instantiate the Product class
         $produitDao = new ProduitDao();
-
+        $produit = new Produit();
         // Get the input data from the request body
         $data = json_decode(file_get_contents("php://input"));
 
@@ -51,13 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === "PUT") {
         if (!empty($data->nom) && !empty($data->description) && !empty($data->prix)) {
             
             // Set the updated product information
+            $produit->setId($id);
             $produit->setNom($data->nom);
             $produit->setDescription($data->description);
             $produit->setPrix($data->prix);
             $produit->setDate_creation(date('Y-m-d'));
 
             // Update the product with the provided ID
-            $result = $produit->update($id);
+            $result = $produitDao->update($produit);
 
             // Check if the update was successful
             if ($result === true) {

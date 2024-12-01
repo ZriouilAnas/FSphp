@@ -11,7 +11,7 @@ class Connexion {
     private $password = '';
     private  $connexion;
     
-public function getConnexion():mixed{
+public function getConnexion(){
     try {
     $this->connexion = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname,
     $this->username,
